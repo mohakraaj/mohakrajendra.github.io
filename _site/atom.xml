@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Stories of Machine Learning</title>
+ <link href="/atom.xml" rel="self"/>
+ <link href="/"/>
+ <updated>2015-03-12T04:21:32-07:00</updated>
+ <id></id>
+ <author>
+   <name>Mohak Rajendra</name>
+   <email>mohakraaj@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Everyday Bayesian Analysis</title>
+   <link href="//2015/02/28/bayesian-analysis/"/>
+   <updated>2015-02-28T00:00:00-08:00</updated>
+   <id>/2015/02/28/bayesian-analysis</id>
+   <content type="html">&lt;p&gt;I was sipping my vanilla latte in Tim Horton’s, a young charming fair girl came in.&lt;/p&gt;
+
+&lt;p&gt;I looked at her, confirmed that she was pretty and again I got lost in my thoughts sipping my viscous latte. I suddenly heard a voice ‘Do you mind if I sit here’ with thick British accent and she sat next to me.&lt;/p&gt;
+
+&lt;p&gt;The slim figure with British accent reminded me of Emma Watson. Influenced by the popular Emma Watson, my brain made presumptions about her. Let us call these assumptions as Prior.&lt;/p&gt;
+
+&lt;p&gt;Prior was that ‘she is very much of a humanitarian person.&lt;/p&gt;
+
+&lt;p&gt;At this point in my life (Quarter life crisis), I was really looking forward to meet someone more kind.&lt;/p&gt;
+
+&lt;p&gt;I was baffled in my mind on how to find out how true my belief about the girl was.&lt;/p&gt;
+
+&lt;p&gt;My prior distribution was something like this.
+&lt;img src=&quot;assets/Bayesian-figure-1.png&quot; /&gt; 
+Figure 1: I was strongly confident (standard deviation =5) that she was 80% benign.&lt;/p&gt;
+
+&lt;p&gt;We started conversation on what I work on and so forth.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;She&lt;/strong&gt;: I am finance accountant in a cancer NGO&lt;/p&gt;
+
+&lt;p&gt;This made my Prior stronger, well she seems to be more humanitarian.&lt;/p&gt;
+
+&lt;p&gt;Whatever she says is&lt;strong&gt; &lt;em&gt;data&lt;/em&gt;&lt;/strong&gt;, which will help me to understand if she is really benign.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;She&lt;/strong&gt;: Do you like your job?
+&lt;strong&gt;Me&lt;/strong&gt;: I love machine learning. We make computers talk. Isn’t that cool?&lt;/p&gt;
+
+&lt;p&gt;She laughed loudly.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;She: &lt;em&gt;Piss off&lt;/em&gt;&lt;/strong&gt;. Are you high? &lt;strong&gt;Dude&lt;/strong&gt; you cant make a computer talk and feel. That is why we call it “computers” not humans.&lt;/p&gt;
+
+&lt;p&gt;Perplexed by her ignorance, found myself in a weird spot. I wondered, if I can ever make her believe that I was not a lying ass.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Me&lt;/strong&gt;: I wish I were high. Yeah we are still figuring out how to do it.&lt;/p&gt;
+
+&lt;p&gt;Blah blah blah.&lt;/p&gt;
+
+&lt;p&gt;I bought vanilla latte for both of us. Yes, she was charming.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Me&lt;/strong&gt;: You should be really proud working for a NGO. I always wanted to work in a NGO.
+&lt;strong&gt;She&lt;/strong&gt;: Bullshit. I just care about how much I get paid. I have my problems.&lt;/p&gt;
+
+&lt;p&gt;May be she is just frustrated with her life. &lt;em&gt;May be&lt;/em&gt; who knows.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/Bayesian-figure-2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Figure 2: My confidence about she being a nice girl reduced. I concluded that she is 60 % benign, I had my doubts about the conclusion (so s.d almost doubled). There is still a decent chance that she is more than 80 % benign.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;She continued&lt;/strong&gt;: Who cares about bunch of people, who will die in few months?&lt;/p&gt;
+
+&lt;p&gt;She seems not to give a fuck about others.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/Bayesian-figure-3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Figure 3: Her ignorance about suffering people, reduced my confidence in her goodwill to 40%. That is 60% she is malignant.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Me&lt;/strong&gt;: What do you feel people should do when they realize that they are going to die soon?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;She&lt;/strong&gt;: Who the fuck cares. I am not going to die anytime soon. I will think about being nice to dying people when I am there.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/Bayesian-figure-4.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Figure 4: Now I was pretty sure that she was a badass girl. I was strongly confident (s.d = 5) that she is 20 % benign. That is 80 % badass girl.&lt;/p&gt;
+
+&lt;p&gt;Blah blah blah&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Me&lt;/strong&gt;: I have to meet someone. Have a great day&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;She&lt;/strong&gt;: Cheers!!&lt;/p&gt;
+
+&lt;p&gt;I left the coffee shop and the girl for good.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;Lets retrospect what happened in the coffee shop.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Prior [Probability (benign)]&lt;/strong&gt;: Assumption about the girl&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Data&lt;/strong&gt;: Talking to her revealed information about her.&lt;/p&gt;
+
+&lt;p&gt;As we talked (gathered data), I was more clear how much benign was she.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Likelihood (Probability(data/benign))&lt;/strong&gt;: For every gathered information we measure likelihood distribution, what is the probability that it would be said by 100 % benign person and 99.99% benign and so on .&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Posterior [Probability (benign /data)]&lt;/strong&gt;: My conclusions based on the data and prior.&lt;/p&gt;
+
+&lt;p&gt;What happened here is Bayesian analysis. This is how our brain works, we do Bayesian analysis every single day.
+After gathering data we re evaluate our probabilities.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;P(benign/data)&lt;/strong&gt; is equal to&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;P(data/benign) * P (benign)/ P(data).&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Long story short, now you know how to do Bayesian analysis.&lt;/em&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>
