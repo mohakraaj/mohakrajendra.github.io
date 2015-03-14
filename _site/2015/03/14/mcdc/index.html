@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Monte Carlo Markov Chain &middot; Stories of Machine Learning
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-base-0f">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" >
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/archive/">Archive</a>
+        
+      
+    
+      
+    
+      
+        
+      
+    
+
+    <a class="sidebar-nav-item" href="https://ca.linkedin.com/pub/mohak-rajendra/29/893/531/en" >LinkedIn</a>
+    <a class="sidebar-nav-item" href="https://github.com/mohakrajendra?tab=repositories">GitHub project</a>
+    <a class="sidebar-nav-item" href="/assets/MohakRajendra_Resume.pdf">Resume</a>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2015. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Stories of Machine Learning</a>
+            <small></small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+  <h1 class="post-title">Monte Carlo Markov Chain</h1>
+  <time datetime="2015-03-14T00:00:00-07:00" class="page-date">14 Mar 2015</time>
+  <p>Neither all girls are hot nor all hot girls are opportunist and definitely not all functions are integrable.</p>
+
+<p>Two dichotomous questions simultaneously ran in my mind. Can I marry a hot girl without knowing if she is an opportunist? Can I do Bayesian analysis if functions are not integrable?</p>
+
+<p>Lets us dwell into each one by one.</p>
+
+<p>Bayesian Analysis</p>
+
+<p><img src="https://mohakrajendra.github.io/assets/MCDC_Figure1.png" alt="Bayesian Formula" /></p>
+
+<p>If our variable is continuous</p>
+
+<p>P(Data) =   ∫ ( P(Data/theta) * P(theta) * delta(theta))  ——————-(1)</p>
+
+<p>To make our analysis using Bayesian statistics, we have to compute equation (1).</p>
+
+<p>In most of the real life applications equation (1) is not integrable.</p>
+
+<p>Isn’t integration same as summing, cant I divide theta to infinitesimally small points, evaluate and sum them.</p>
+
+<p>For Christ’s sake <strong>NO</strong>. It becomes computationally impossible even when there are 10 parameters. Do you remember this is exactly why mathematicians invented something and called it as ‘Integration’.</p>
+
+<p>Since our brilliant idea of Integrations fails, lets see what we can do.</p>
+
+<p>So we want to evaluate posterior distribution P(theta/Data), but we are having hard time computing P(Data). What if there was a way to approximate P(theta/Data).</p>
+
+<p><strong><em>This is why we introduce you to ‘Monte Carlo Marco Chain’ (MCDC).&lt;/strong&gt;</em></strong></p>
+
+<p>Before I begin with MCDC, let me tell a story about shrewd politician called Metropolis.</p>
+
+<p>Metropolis was a shrewd and smart ass politician, who ended up in a string on islands, which can only be reasoned as his misfortune.</p>
+
+<p><img src="https://mohakrajendra.github.io/assets/MCDC_Figure2.png" alt="Island" />
+ Figure 1: This is the island where Metropolis got stuck ☹</p>
+
+<p>Metropolis desired to change his misfortune into a fortune, that is to rule the island. He wanted to find the Population distribution of the islands to make an efficient campaign.</p>
+
+<p>Let P(islands) be the population distribution, which looks something like this
+<img src="https://mohakrajendra.github.io/assets/MCDC_Figure3.png" alt="Population distribution" /></p>
+
+<p>Lets number the island from left to right. Leftmost island starts with zero.</p>
+
+<p>Proposed_island is the island where Metropolis wants to move from his current island. The only information he could get from the mayor on the island was P(proposed_island/current_island)</p>
+
+<p>Metropolis came up with an algorithm</p>
+
+<pre><code>1. Randomly select an island. He flipped a coin. 
+
+	a) If coin flips tails, he will move to island on the left (proposed_island= current_island-1). 
+	b) If coin flips tails, he will move to island on the left (proposed_island= current_island+1)
+
+2. Now ask Mayor for P(proposed_island) /P(current_island). Lets call this pmove.
+
+3. If pmove is greater than 1
+   then 
+		move to the proposed_island.
+   Else 
+   		spin a fair spinner marked from 0 to 1. 
+   		
+   		If spinner shows value less than pmove, 
+   			then he moves to proposed_island
+   		Else 
+   			he decides to stay.
+</code></pre>
+
+<p><strong><em>pmove = 0.5 * min(P(proposed_island)/P(current_island),1)&lt;/strong&gt;</em></strong></p>
+
+<p>He repeated the above steps for long long time. And then he claimed that his distribution of visits is equal to Population distribution of the islands.</p>
+
+<p>Guess what, he was perfectly right. Let’s believe this as fact, after all metropolis was a smart ass and he called this algorithm as Metropolis algorithm.</p>
+
+<p>To get intuition on what metropolis did</p>
+
+<p><img src="https://mohakrajendra.github.io/assets/MCDC_Figure4.png" alt="Metropolis algorithm" /></p>
+
+<p>Relative probability of transition exactly matches the relative population distribution. This should give us tinge of idea that the islands will be visited proportional to the Population distribution.</p>
+
+<p>If you don’t believe politicians, you can read more about the proof from references.</p>
+
+<p>Key points from metropolis algorithm</p>
+
+<p>We can evaluate the posterior distribution P(theta/D), if we just know</p>
+
+<p><img src="https://mohakrajendra.github.io/assets/MCDC_Figure5.png" alt="posterior distribution formula" /></p>
+
+<p>Then we know 
+<img src="https://mohakrajendra.github.io/assets/MCDC_Figure6.png" alt="posterior distribution formula" /></p>
+
+<p>Did you see the magic metropolis algorithm did? It calculated P(theta/D) without calculating P(D) (without integration). That means our functions need not be integrable.</p>
+
+<p>This whole method of approximating Posterior distribution by randomly generating values from it is called Monte Carlo Markov Chain.</p>
+
+<p>There are many other sampling processes similar to MetroPolis. One such widely used efficient method is Gibbs sampling. 
+Lets get back to my dichotomy</p>
+
+<p>Can I calculate posterior distribution without integration? Definitely yes.
+Can I make my marriage work without knowing if the girl is opportunistic? Still no idea ☹</p>
+
+<p>Referred links:</p>
+
+<p><a href="http://www.amazon.ca/Doing-Bayesian-Data-Analysis-Tutorial/dp/0124058884/ref=dp_ob_title_bk">Doing Bayesian data analysis by John Kruschke </a>
+<a href="http://www.life.illinois.edu/dietze/Lectures2012/Lesson12_Metropolis.pdf">http://www.life.illinois.edu/dietze/Lectures2012/Lesson12_Metropolis.pdf</a>
+<a href="https://classes.soe.ucsc.edu/ams206/Winter03/h30m16.pdf">https://classes.soe.ucsc.edu/ams206/Winter03/h30m16.pdf</a></p>
+
+
+</article>
+
+<aside class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="//2015/02/28/bayesian-analysis/">
+            Everyday Bayesian Analysis
+            <small><time datetime="2015-02-28T00:00:00-08:00">28 Feb 2015</time></small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</aside>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
+

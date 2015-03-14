@@ -34,8 +34,7 @@
 
     <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
      styles, `#sidebar-checkbox` for behavior. -->
-<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
-
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" checked>
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
@@ -43,7 +42,7 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item active" href="/">Home</a>
+    <a class="sidebar-nav-item" href="/">Home</a>
 
     
 
@@ -71,6 +70,10 @@
     
       
     
+      
+        
+      
+    
 
     <a class="sidebar-nav-item" href="https://ca.linkedin.com/pub/mohak-rajendra/29/893/531/en" >LinkedIn</a>
     <a class="sidebar-nav-item" href="https://github.com/mohakrajendra?tab=repositories">GitHub project</a>
@@ -85,8 +88,10 @@
 </div>
 
 
+
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
          content to avoid any CSS collisions with our real content. -->
+
     <div class="wrap">
       <div class="masthead">
         <div class="container">
@@ -98,7 +103,7 @@
       </div>
 
       <div class="container content">
-        <body class="sidebar-overlay">
+        <body>
 <div class="posts">
   
   <article class="post">
@@ -218,7 +223,9 @@ After gathering data we re evaluate our probabilities.</p>
     <span class="pagination-item older">Older</span>
   
   
-    <span class="pagination-item newer">Newer</span>
+    
+      <a class="pagination-item newer" href="/">Newer</a>
+    
   
 </div>
 

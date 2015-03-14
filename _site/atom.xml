@@ -4,13 +4,125 @@
  <title>Stories of Machine Learning</title>
  <link href="https://mohakrajendra.github.io/atom.xml" rel="self"/>
  <link href="https://mohakrajendra.github.io/"/>
- <updated>2015-03-13T19:14:39-07:00</updated>
+ <updated>2015-03-14T13:13:54-07:00</updated>
  <id>https://mohakrajendra.github.io</id>
  <author>
    <name>Mohak Rajendra</name>
    <email>mohakraaj@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Monte Carlo Markov Chain</title>
+   <link href="https://mohakrajendra.github.io//2015/03/14/mcdc/"/>
+   <updated>2015-03-14T00:00:00-07:00</updated>
+   <id>https://mohakrajendra.github.io/2015/03/14/mcdc</id>
+   <content type="html">&lt;p&gt;Neither all girls are hot nor all hot girls are opportunist and definitely not all functions are integrable.&lt;/p&gt;
+
+&lt;p&gt;Two dichotomous questions simultaneously ran in my mind. Can I marry a hot girl without knowing if she is an opportunist? Can I do Bayesian analysis if functions are not integrable?&lt;/p&gt;
+
+&lt;p&gt;Lets us dwell into each one by one.&lt;/p&gt;
+
+&lt;p&gt;Bayesian Analysis&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://mohakrajendra.github.io/assets/MCDC_Figure1.png&quot; alt=&quot;Bayesian Formula&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If our variable is continuous&lt;/p&gt;
+
+&lt;p&gt;P(Data) =   ∫ ( P(Data/theta) * P(theta) * delta(theta))  ——————-(1)&lt;/p&gt;
+
+&lt;p&gt;To make our analysis using Bayesian statistics, we have to compute equation (1).&lt;/p&gt;
+
+&lt;p&gt;In most of the real life applications equation (1) is not integrable.&lt;/p&gt;
+
+&lt;p&gt;Isn’t integration same as summing, cant I divide theta to infinitesimally small points, evaluate and sum them.&lt;/p&gt;
+
+&lt;p&gt;For Christ’s sake &lt;strong&gt;NO&lt;/strong&gt;. It becomes computationally impossible even when there are 10 parameters. Do you remember this is exactly why mathematicians invented something and called it as ‘Integration’.&lt;/p&gt;
+
+&lt;p&gt;Since our brilliant idea of Integrations fails, lets see what we can do.&lt;/p&gt;
+
+&lt;p&gt;So we want to evaluate posterior distribution P(theta/Data), but we are having hard time computing P(Data). What if there was a way to approximate P(theta/Data).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;This is why we introduce you to ‘Monte Carlo Marco Chain’ (MCDC).&amp;lt;/strong&amp;gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Before I begin with MCDC, let me tell a story about shrewd politician called Metropolis.&lt;/p&gt;
+
+&lt;p&gt;Metropolis was a shrewd and smart ass politician, who ended up in a string on islands, which can only be reasoned as his misfortune.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://mohakrajendra.github.io/assets/MCDC_Figure2.png&quot; alt=&quot;Island&quot; /&gt;
+ Figure 1: This is the island where Metropolis got stuck ☹&lt;/p&gt;
+
+&lt;p&gt;Metropolis desired to change his misfortune into a fortune, that is to rule the island. He wanted to find the Population distribution of the islands to make an efficient campaign.&lt;/p&gt;
+
+&lt;p&gt;Let P(islands) be the population distribution, which looks something like this
+&lt;img src=&quot;https://mohakrajendra.github.io/assets/MCDC_Figure3.png&quot; alt=&quot;Population distribution&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Lets number the island from left to right. Leftmost island starts with zero.&lt;/p&gt;
+
+&lt;p&gt;Proposed_island is the island where Metropolis wants to move from his current island. The only information he could get from the mayor on the island was P(proposed_island/current_island)&lt;/p&gt;
+
+&lt;p&gt;Metropolis came up with an algorithm&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. Randomly select an island. He flipped a coin. 
+
+	a) If coin flips tails, he will move to island on the left (proposed_island= current_island-1). 
+	b) If coin flips tails, he will move to island on the left (proposed_island= current_island+1)
+
+2. Now ask Mayor for P(proposed_island) /P(current_island). Lets call this pmove.
+
+3. If pmove is greater than 1
+   then 
+		move to the proposed_island.
+   Else 
+   		spin a fair spinner marked from 0 to 1. 
+   		
+   		If spinner shows value less than pmove, 
+   			then he moves to proposed_island
+   		Else 
+   			he decides to stay.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;pmove = 0.5 * min(P(proposed_island)/P(current_island),1)&amp;lt;/strong&amp;gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;He repeated the above steps for long long time. And then he claimed that his distribution of visits is equal to Population distribution of the islands.&lt;/p&gt;
+
+&lt;p&gt;Guess what, he was perfectly right. Let’s believe this as fact, after all metropolis was a smart ass and he called this algorithm as Metropolis algorithm.&lt;/p&gt;
+
+&lt;p&gt;To get intuition on what metropolis did&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://mohakrajendra.github.io/assets/MCDC_Figure4.png&quot; alt=&quot;Metropolis algorithm&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Relative probability of transition exactly matches the relative population distribution. This should give us tinge of idea that the islands will be visited proportional to the Population distribution.&lt;/p&gt;
+
+&lt;p&gt;If you don’t believe politicians, you can read more about the proof from references.&lt;/p&gt;
+
+&lt;p&gt;Key points from metropolis algorithm&lt;/p&gt;
+
+&lt;p&gt;We can evaluate the posterior distribution P(theta/D), if we just know&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://mohakrajendra.github.io/assets/MCDC_Figure5.png&quot; alt=&quot;posterior distribution formula&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then we know 
+&lt;img src=&quot;https://mohakrajendra.github.io/assets/MCDC_Figure6.png&quot; alt=&quot;posterior distribution formula&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Did you see the magic metropolis algorithm did? It calculated P(theta/D) without calculating P(D) (without integration). That means our functions need not be integrable.&lt;/p&gt;
+
+&lt;p&gt;This whole method of approximating Posterior distribution by randomly generating values from it is called Monte Carlo Markov Chain.&lt;/p&gt;
+
+&lt;p&gt;There are many other sampling processes similar to MetroPolis. One such widely used efficient method is Gibbs sampling. 
+Lets get back to my dichotomy&lt;/p&gt;
+
+&lt;p&gt;Can I calculate posterior distribution without integration? Definitely yes.
+Can I make my marriage work without knowing if the girl is opportunistic? Still no idea ☹&lt;/p&gt;
+
+&lt;p&gt;Referred links:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.amazon.ca/Doing-Bayesian-Data-Analysis-Tutorial/dp/0124058884/ref=dp_ob_title_bk&quot;&gt;Doing Bayesian data analysis by John Kruschke &lt;/a&gt;
+&lt;a href=&quot;http://www.life.illinois.edu/dietze/Lectures2012/Lesson12_Metropolis.pdf&quot;&gt;http://www.life.illinois.edu/dietze/Lectures2012/Lesson12_Metropolis.pdf&lt;/a&gt;
+&lt;a href=&quot;https://classes.soe.ucsc.edu/ams206/Winter03/h30m16.pdf&quot;&gt;https://classes.soe.ucsc.edu/ams206/Winter03/h30m16.pdf&lt;/a&gt;&lt;/p&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Everyday Bayesian Analysis</title>
