@@ -10,16 +10,15 @@ paginate:         1
 baseurl:          /
 author:
   name:           Mohak Rajendra
-  url:            https://twitter.com/
+  url:            http://mohakr.brandyourself.com/
   email:          mohakraaj@gmail.com
 
 # Custom vars
-version:          1.0.0
-  repo:           https://github.com/mohakrajendra
-  linkedIn:       https://ca.linkedin.com/pub/mohak-rajendra/29/893/531/en	
+repo:           https://github.com/mohakrajendra?tab=repositories
+linkedIn:       http://ca.linkedin.com/pub/mohak-rajendra/29/893/531/en	
 
 
 pages_list:       
-  About: '/about'
   Archive: '/archive'
+  About: '/about'
 
